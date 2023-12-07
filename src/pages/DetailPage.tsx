@@ -11,7 +11,7 @@ const DetailPage = () => {
   return (
     <div>
       <h1 className="text-center text-[40px] md:text-[60px]">{event?.name}</h1>
-      <div className="md:flex justify-center m-5">
+      <div className="flex flex-col md:text-center items-center m-5">
         <div className="mx-3 md:w-[30%]">
           <img
             src={event?.coverImage}
