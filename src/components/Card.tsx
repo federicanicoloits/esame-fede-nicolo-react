@@ -20,7 +20,7 @@ const CardDefault = (Evento: EventCardType) => {
         <img src={evento.coverImage} alt={evento.name} />
       </CardHeader>
       <CardBody>
-        <Typography variant="h2" color="blue-gray" className="mb-2">
+        <Typography variant="h3" color="blue-gray" className="mb-2">
           {evento.name}
         </Typography>
         <Typography>{evento.description.short}</Typography>
