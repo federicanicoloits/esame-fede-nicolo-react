@@ -15,7 +15,7 @@ type EventCardType = {
 const CardDefault = (Evento: EventCardType) => {
   const { evento, detailPath } = Evento;
   return (
-    <Card className="m-6 w-96">
+    <Card className="m-6 w-96 flex flex-col justify-between">
       <CardHeader color="blue-gray" className="relative h-56">
         <img src={evento.coverImage} alt={evento.name} />
       </CardHeader>
@@ -24,12 +24,12 @@ const CardDefault = (Evento: EventCardType) => {
           {evento.name}
         </Typography>
         <Typography>{evento.description.short}</Typography>
-        <Typography>Data: {evento.datatotale}</Typography>
-        <Typography>Slot Orari: {evento.dataora.join(" ")}</Typography>
+        <Typography>Date: {evento.datatotale}</Typography>
+        <Typography>Hours: {evento.dataora.join(" ")}</Typography>
       </CardBody>
       <CardFooter className="pt-0">
         <Button>
-          <Link to={detailPath}>Prenota</Link>
+          <Link to={detailPath}>Book now</Link>
         </Button>
       </CardFooter>
     </Card>
