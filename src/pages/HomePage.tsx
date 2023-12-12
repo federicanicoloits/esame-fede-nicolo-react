@@ -10,29 +10,29 @@ const HomePage = () => {
   }
   return (
     <div>
-      <div className="flex items-center justify-center h-[120vh] md:grid md:grid-cols-[2fr_1fr_3fr_1fr_1fr_2fr_3fr] md:grid-rows-[1fr_10fr_1fr]">
+      <div className="flex items-center justify-center h-[120vh] md:grid lg:grid-cols-[2fr_1fr_3fr_1fr_1fr_2fr_3fr] lg:grid-rows-[1fr_10fr_1fr]">
         <img
           src={quadratoMezzo}
-          className="hidden md:block md:col-start-6 md:col-end-7 md:row-start-1 md:row-end-2"
+          className="hidden lg:block lg:col-start-6 lg:col-end-7 lg:row-start-1 lg:row-end-2"
         />
         <img
           src={quadratoMezzo}
-          className="hidden md:block md:col-start-2 md:col-end-3 md:row-start-3 md:row-end-4"
+          className="hidden lg:block lg:col-start-2 lg:col-end-3 lg:row-start-3 lg:row-end-4"
         />
         <img
           src={lineaCerchio}
-          className="hidden md:block md:col-start-7 md:col-end-8 md:row-start-2 md:row-end-3"
+          className="hidden lg:block lg:col-start-7 lg:col-end-8 lg:row-start-2 lg:row-end-3"
         />
-        <div className="md:md:col-start-1 md:col-end-8 md:row-start-2 md:row-end-3 md:flex md:items-center md:justify-center">
-          <div className="m-8 md:m-0 md:w-1/2">
+        <div className="lg:col-start-1 lg:col-end-8 lg:row-start-2 lg:row-end-3 lg:flex lg:items-center lg:justify-center">
+          <div className="m-8 lg:m-0 lg:w-1/2">
             <h1 className="text-6xl md:text-8xl text-center text-white">
               Welcome to <br />
               <span className="ks">Nightclub200</span>
             </h1>
           </div>
-          <div className="md:w-1/2 flex justify-center">
+          <div className="lg:w-1/2 flex justify-center">
             <img
-              className="object-fill w-[400px] h-[400px] md:w-[550px] md:h-[550px] rounded-[50%]"
+              className="object-fill w-[400px] h-[400px] lg:w-[550px] lg:h-[550px] rounded-[50%]"
               src={nightclubImage}
               alt="People in nightclub"
             />
