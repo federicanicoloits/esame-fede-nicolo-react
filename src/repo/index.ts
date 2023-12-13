@@ -1,5 +1,5 @@
 import { EventType, EventTypeTotal } from "./event.types";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 const URL = "https://its-events.davide-mantovani.workers.dev/events/";
 
 export const getEvents = async (): Promise<EventTypeTotal[]> => {
