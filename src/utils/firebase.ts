@@ -1,6 +1,7 @@
 // Import the functions
 import { initializeApp } from "firebase/app";
 import { Database, getDatabase, ref, push } from "firebase/database";
+import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -18,6 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const db = getDatabase(app);
+export const auth = getAuth(app);
 
 // PER SCRIVERE SUL DB
 
@@ -30,6 +32,24 @@ export function writeReservation(
   database: Database
 ) {
   push(ref(database, "reservations/"), {
+    nome: nome,
+    cognome: cognome,
+    email: email,
+    evento: idEvento,
+    ore: ore,
+  });
+}
+
+export function writeReservationWithAuth(
+  nome: string,
+  cognome: string,
+  email: string,
+  idEvento: number,
+  ore: string,
+  database: Database,
+  idUser: string
+) {
+  push(ref(database, "reservations/users/" + idUser), {
     nome: nome,
     cognome: cognome,
     email: email,
