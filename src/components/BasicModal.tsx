@@ -51,36 +51,7 @@ const BasicModal = (BasicModalType: TypeBasicModal) => {
       </Button>
       <Dialog open={open} handler={handleOpen}>
         <DialogHeader>Prenota alle {SlotOrario}</DialogHeader>
-        <form
-          onSubmit={() => {
-            if (!iscrizioneAttiva) {
-              writeReservation(nome, cognome, email, IdEvento, SlotOrario, db);
-            }
-            azzera();
-            handleOpen();
-            if (iscrizioneAttiva) {
-              createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                  // Signed up
-                  const userId = userCredential.user.uid;
-                  writeReservationWithAuth(
-                    nome,
-                    cognome,
-                    email,
-                    IdEvento,
-                    SlotOrario,
-                    db,
-                    userId
-                  );
-                })
-                .catch((error) => {
-                  const errorCode = error.code;
-                  const errorMessage = error.message;
-                  console.error(errorCode + ": " + errorMessage);
-                });
-            }
-          }}
-        >
+        <form>
           <DialogBody>
             <div>
               <label htmlFor="nome">Nome</label>
@@ -144,7 +115,45 @@ const BasicModal = (BasicModalType: TypeBasicModal) => {
             >
               <span>Go Back</span>
             </Button>
-            <Button variant="gradient" color="green" type="submit">
+            <Button
+              variant="gradient"
+              color="green"
+              onClick={() => {
+                if (!iscrizioneAttiva) {
+                  writeReservation(
+                    nome,
+                    cognome,
+                    email,
+                    IdEvento,
+                    SlotOrario,
+                    db
+                  );
+                }
+                azzera();
+                handleOpen();
+                if (iscrizioneAttiva) {
+                  createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                      // Signed up
+                      const userId = userCredential.user.uid;
+                      writeReservationWithAuth(
+                        nome,
+                        cognome,
+                        email,
+                        IdEvento,
+                        SlotOrario,
+                        db,
+                        userId
+                      );
+                    })
+                    .catch((error) => {
+                      const errorCode = error.code;
+                      const errorMessage = error.message;
+                      console.error(errorCode + ": " + errorMessage);
+                    });
+                }
+              }}
+            >
               Confirm
             </Button>
           </DialogFooter>
