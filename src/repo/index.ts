@@ -10,7 +10,7 @@ export const getEvents = async (): Promise<EventTypeTotal[]> => {
       const dat = dayjs(dato.date);
       dato.datatotale = dat.format("DD/MM/YYYY").toString();
 
-      const numberOfSlots = 5;
+      const numberOfSlots = 6;
       const incrementMinutes = 15;
       dato.dataora = Array.from({ length: numberOfSlots }, (_, index) =>
         dat
@@ -32,7 +32,7 @@ export const getEvent = async (id: number): Promise<EventType | null> => {
     const dat = dayjs(data.date);
     data.datatotale = dat.format("DD/MM/YYYY").toString();
 
-    const numberOfSlots = 5;
+    const numberOfSlots = 6;
     const incrementMinutes = 15;
     data.dataora = Array.from({ length: numberOfSlots }, (_, index) =>
       dat

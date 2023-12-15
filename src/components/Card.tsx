@@ -23,6 +23,7 @@ const CardDefault = (Evento: EventCardType) => {
         <Typography variant="h3" color="blue-gray" className="mb-2">
           {evento.name}
         </Typography>
+        <Typography>Price: {evento.price}</Typography>
         <Typography>{evento.description.short}</Typography>
         <Typography>Date: {evento.datatotale}</Typography>
         <Typography>Hours: {evento.dataora.join(" ")}</Typography>
