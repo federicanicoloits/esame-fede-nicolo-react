@@ -72,7 +72,9 @@ const DetailPage = () => {
                         <span className="px-3">{dish.name}</span>
                       </h4>
                       <p>{dish.description}</p>
-                      <p>Allergens: {dish.allergens.join(", ")}</p>
+                      {dish.allergens.length > 0 && (
+                        <p>Allergens: {dish.allergens.join(", ")}</p>
+                      )}
                     </div>
                   );
                 })}

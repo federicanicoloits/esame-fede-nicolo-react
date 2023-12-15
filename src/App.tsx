@@ -6,22 +6,22 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
+import Page404 from "./pages/Page404";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
   },
-  // { path: "*", element: <h1>404</h1> },
   {
-    path: "*",
+    path: "/home",
     element: <Navigate to="/" />,
-    //fallback redirect
   },
   {
     path: "/detail/:id",
     element: <DetailPage />,
   },
+  { path: "*", element: <Page404 /> },
 ]);
 
 function App() {
