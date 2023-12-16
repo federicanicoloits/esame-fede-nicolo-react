@@ -14,7 +14,11 @@ const DetailPage = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-[100vh] w-[100wv]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 200 200"
+          className="h-[200px] w-[200px]"
+        >
           <path
             fill="#FFFFFF"
             stroke="#FFFFFF"
