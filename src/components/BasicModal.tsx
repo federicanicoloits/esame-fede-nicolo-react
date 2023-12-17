@@ -27,7 +27,7 @@ const BasicModal = (BasicModalType: TypeBasicModal) => {
   const [cognome, setCognome] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [iscrizioneAttiva, setIscrizioneAttiva] = useState(false);
+  const [iscrizione, setIscrizione] = useState(false);
 
   const handleOpen = () => setOpen(!open);
 
@@ -36,10 +36,10 @@ const BasicModal = (BasicModalType: TypeBasicModal) => {
     setCognome("");
     setEmail("");
     setPassword("");
-    setIscrizioneAttiva(false);
+    setIscrizione(false);
   };
   const handleIscrizioneToggle = () => {
-    setIscrizioneAttiva(!iscrizioneAttiva);
+    setIscrizione(!iscrizione);
     // Resetta la password quando l'utente cambia lo stato di iscrizione
     setPassword("");
   };
@@ -89,11 +89,11 @@ const BasicModal = (BasicModalType: TypeBasicModal) => {
               <input
                 name="check"
                 type="checkbox"
-                checked={iscrizioneAttiva}
+                checked={iscrizione}
                 onChange={handleIscrizioneToggle}
               />
             </div>
-            {iscrizioneAttiva && (
+            {iscrizione && (
               <div>
                 <label htmlFor="password">Choose a password</label>
                 <input
@@ -119,7 +119,7 @@ const BasicModal = (BasicModalType: TypeBasicModal) => {
               variant="gradient"
               color="green"
               onClick={() => {
-                if (!iscrizioneAttiva) {
+                if (!iscrizione) {
                   writeReservation(
                     nome,
                     cognome,
@@ -131,7 +131,7 @@ const BasicModal = (BasicModalType: TypeBasicModal) => {
                 }
                 azzera();
                 handleOpen();
-                if (iscrizioneAttiva) {
+                if (iscrizione) {
                   createUserWithEmailAndPassword(auth, email, password)
                     .then((userCredential) => {
                       // Signed up
