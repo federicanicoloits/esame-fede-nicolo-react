@@ -29,9 +29,9 @@ const CardDefault = (Evento: EventCardType) => {
         <Typography>Hours: {evento.dataora.join(" ")}</Typography>
       </CardBody>
       <CardFooter className="pt-0">
-        <Button>
-          <Link to={detailPath}>Book now</Link>
-        </Button>
+        <Link to={detailPath}>
+          <Button>Book now</Button>
+        </Link>
       </CardFooter>
     </Card>
   );
