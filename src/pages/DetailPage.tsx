@@ -90,7 +90,7 @@ const DetailPage = () => {
                 <BiSolidDish />
                 <span className="px-3">Aperitivo Included</span>
               </h3>
-              <p>
+              <div>
                 {event?.includedDishes.map((dish, i) => {
                   return (
                     <div key={i}>
@@ -105,7 +105,7 @@ const DetailPage = () => {
                     </div>
                   );
                 })}
-              </p>
+              </div>
             </>
           )}
 
@@ -124,9 +124,9 @@ const DetailPage = () => {
       <div className="">
         <h2 className="text-3xl text-center text-white ks">Book Now</h2>
         <div className="flex justify-center flex-wrap">
-          {event?.dataora.map((SlotOrario) => {
+          {event?.dataora.map((SlotOrario, i) => {
             return (
-              <div className="mx-5 mt-3">
+              <div className="mx-5 mt-3" key={i}>
                 <BasicModal SlotOrario={SlotOrario} IdEvento={event.id} />
               </div>
             );
