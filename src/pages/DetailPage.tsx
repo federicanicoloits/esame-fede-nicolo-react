@@ -8,6 +8,7 @@ import { IoPricetags } from "react-icons/io5";
 import { MdOutlinePriceCheck } from "react-icons/md";
 import { BiSolidDish } from "react-icons/bi";
 import { GiRaddish } from "react-icons/gi";
+import { Link } from "react-router-dom";
 const DetailPage = () => {
   const { event, isLoading } = useEvent();
 
@@ -44,6 +45,9 @@ const DetailPage = () => {
 
   return (
     <div className="text-white m-5">
+      <Link to="/">
+        <button className="underline">Go Back</button>
+      </Link>
       <h1 className=" text-[40px] md:text-[60px] ks">
         <span className="ks">{event?.name}</span>
       </h1>
