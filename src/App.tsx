@@ -7,6 +7,7 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import Page404 from "./pages/Page404";
+import LoginPage from "./pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/detail/:id",
     element: <DetailPage />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
   },
   { path: "*", element: <Page404 /> },
 ]);

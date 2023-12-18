@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Dialog,
@@ -7,12 +7,10 @@ import {
   DialogFooter,
 } from "@material-tailwind/react";
 import {
-  auth,
   db,
   writeReservation,
   writeReservationWithAuth,
 } from "../utils/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 
 type TypeBasicModal = {
   SlotOrario: string;
@@ -26,8 +24,18 @@ const BasicModal = (BasicModalType: TypeBasicModal) => {
   const [nome, setNome] = useState<string>("");
   const [cognome, setCognome] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [iscrizione, setIscrizione] = useState(false);
+  // const [password, setPassword] = useState<string>("");
+  // const [iscrizione, setIscrizione] = useState(false);
+
+  const [loggato, setLoggato] = useState(false);
+
+  useEffect(() => {
+    const emailSession = sessionStorage.getItem("email");
+    if (emailSession) {
+      setLoggato(true);
+      setEmail(emailSession);
+    }
+  }, []);
 
   const handleOpen = () => setOpen(!open);
 
@@ -35,13 +43,6 @@ const BasicModal = (BasicModalType: TypeBasicModal) => {
     setNome("");
     setCognome("");
     setEmail("");
-    setPassword("");
-    setIscrizione(false);
-  };
-  const handleIscrizioneToggle = () => {
-    setIscrizione(!iscrizione);
-    // Resetta la password quando l'utente cambia lo stato di iscrizione
-    setPassword("");
   };
 
   return (
@@ -76,6 +77,7 @@ const BasicModal = (BasicModalType: TypeBasicModal) => {
             <div>
               <label htmlFor="email">Email</label>
               <input
+                readOnly={loggato}
                 type="email"
                 name="email"
                 value={email}
@@ -83,28 +85,6 @@ const BasicModal = (BasicModalType: TypeBasicModal) => {
                 className="w-full"
               />
             </div>
-            <div>
-              <div>Do you want to register?</div>
-              <label htmlFor="check">Yes</label>
-              <input
-                name="check"
-                type="checkbox"
-                checked={iscrizione}
-                onChange={handleIscrizioneToggle}
-              />
-            </div>
-            {iscrizione && (
-              <div>
-                <label htmlFor="password">Choose a password</label>
-                <input
-                  type="password"
-                  name="password"
-                  value={password}
-                  onChange={(n) => setPassword(n.target.value)}
-                  className="w-full"
-                />
-              </div>
-            )}
           </DialogBody>
           <DialogFooter>
             <Button
@@ -119,7 +99,7 @@ const BasicModal = (BasicModalType: TypeBasicModal) => {
               variant="gradient"
               color="green"
               onClick={() => {
-                if (!iscrizione) {
+                if (!loggato) {
                   writeReservation(
                     nome,
                     cognome,
@@ -131,26 +111,17 @@ const BasicModal = (BasicModalType: TypeBasicModal) => {
                 }
                 azzera();
                 handleOpen();
-                if (iscrizione) {
-                  createUserWithEmailAndPassword(auth, email, password)
-                    .then((userCredential) => {
-                      // Signed up
-                      const userId = userCredential.user.uid;
-                      writeReservationWithAuth(
-                        nome,
-                        cognome,
-                        email,
-                        IdEvento,
-                        SlotOrario,
-                        db,
-                        userId
-                      );
-                    })
-                    .catch((error) => {
-                      const errorCode = error.code;
-                      const errorMessage = error.message;
-                      console.error(errorCode + ": " + errorMessage);
-                    });
+                const uid = sessionStorage.getItem("uid");
+                if (loggato && uid) {
+                  writeReservationWithAuth(
+                    nome,
+                    cognome,
+                    email,
+                    IdEvento,
+                    SlotOrario,
+                    db,
+                    uid
+                  );
                 }
               }}
             >

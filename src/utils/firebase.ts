@@ -31,7 +31,7 @@ export function writeReservation(
   ore: string,
   database: Database
 ) {
-  push(ref(database, "reservations/"), {
+  push(ref(database, "reservations/anonimous/"), {
     nome: nome,
     cognome: cognome,
     email: email,
